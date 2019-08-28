@@ -24,9 +24,9 @@ private static Connection con = null;
                 //jdbc.properties
                 ResourceBundle rb = ResourceBundle.getBundle("jdbc");
                 String driver = rb.getString("driver");
-                String url = rb.getString("localhost");
-                String pwd = rb.getString("1824150");
-                String usr = rb.getString("DVDrental");
+                String url = rb.getString("url");
+                String pwd = rb.getString("pwd");
+                String usr = rb.getString("usr");
                 
                 Class.forName(driver);
                 con = DriverManager.getConnection(url, usr, pwd);
