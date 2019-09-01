@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dvdrental;
+package Modelo;
+import Modelo.Category;
 import java.sql.*;
 import java.util.ArrayList;
 import Servicios.Fachada;
@@ -75,7 +76,7 @@ public class CategoryDAO {
         return rtdo;
     }
      
-     public int borrarCategory(String category_id){      
+     public int borrarCategory(int category_id){      
         Connection con = null;
         PreparedStatement pstm = null;
         int rtdo;
@@ -84,7 +85,7 @@ public class CategoryDAO {
             con = Fachada.getConnection();
             String sql = "DELETE FROM category WHERE category_id = ? ";
             pstm = con.prepareStatement(sql);
-            pstm.setString(1, category_id);
+            pstm.setInt(1, category_id);
             rtdo = pstm.executeUpdate(); 
             return rtdo;
         }
@@ -103,7 +104,7 @@ public class CategoryDAO {
         }
         return rtdo;
     }
-      public ArrayList<Category> listadocategorias(String category_id){      
+      public ArrayList<Category> listadocategorias(int category_id){      
         Connection con = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
@@ -111,7 +112,7 @@ public class CategoryDAO {
         try{
             con = Fachada.getConnection();
             String sql="";
-            if(category_id.equalsIgnoreCase("0")){
+            if(category_id==0){
                 sql = "SELECT * FROM category ORDER BY category_id";            
             }else{
                 sql = "SELECT * FROM category where category_id = ? "
@@ -119,8 +120,8 @@ public class CategoryDAO {
             }                        
             pstm = con.prepareStatement(sql);
             
-            if(category_id != "0"){
-                pstm.setString(1, category_id);
+            if(category_id != 0){
+                pstm.setInt(1, category_id);
             }
             
             rs = pstm.executeQuery();
