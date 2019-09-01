@@ -177,6 +177,11 @@ private void limpiarListadoTabla(){
                 "Idioma_Id", "Idioma", "Last_Update"
             }
         ));
+        jtListado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtListadoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtListado);
 
         getContentPane().add(jScrollPane1);
@@ -399,6 +404,27 @@ private void limpiarListadoTabla(){
              
         }
     }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void jtListadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtListadoMouseClicked
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) jtListado.getModel();
+                            
+        if(jtListado.getSelectedRow()==-1){
+            if(jtListado.getRowCount()==0){
+                JOptionPane.showMessageDialog(this,"No hay registros");
+            }
+            else{
+                JOptionPane.showMessageDialog(this,"Seleccione una fila");
+            }
+        }else {
+                                  
+            jTextField1.setText(modelo.getValueAt(
+                    jtListado.getSelectedRow(), 0).toString());            
+            jTextField2.setText(modelo.getValueAt(
+                    jtListado.getSelectedRow(), 1).toString());
+     
+        }
+    }//GEN-LAST:event_jtListadoMouseClicked
 
     /**
      * @param args the command line arguments
