@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package Modelo;
-import java.util.Calendar;  
+ 
+import java.sql.Timestamp;
+import java.util.Date;
 /**
  *
  * @author crist
@@ -12,19 +14,19 @@ import java.util.Calendar;
 public class Category {
     private int category_id;
     private String category_name;
-    private String last_update;
+    private Timestamp last_update;
     //____Constructor__
     public Category(int category_id,String category_name){
     this.category_id=category_id;
     this.category_name=category_name;
-    Calendar calendar = Calendar.getInstance();  
-    last_update=""+calendar.getTime();
+     Date date = new Date();
+    last_update=new Timestamp(date.getTime());
 }
        public Category(){
     this.category_id=0;
     this.category_name="";
-    Calendar calendar = Calendar.getInstance();  
-    last_update=""+calendar.getTime();
+       Date date = new Date();
+    last_update=new Timestamp(date.getTime());
 } 
     
      //________Get&Set_____________
@@ -41,10 +43,10 @@ public class Category {
         return category_name;
     }
    
-    public void setLasUpdate(String last_Update){
+    public void setLasUpdate(Timestamp last_Update){
         this.last_update=last_Update;
     }
-    public String getLasUpdate(){
+    public Timestamp getLasUpdate(){
         return last_update;
     }
      //________________________

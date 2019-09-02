@@ -15,14 +15,13 @@ public class Fachada {
 private static Connection con = null;
     
     public static Connection getConnection(){
-        try
+       try
         {
             if(con == null){
-                //Determina cuando se termina el programa
+         
                 Runtime.getRuntime().addShutdownHook(new MiShDwnHook());
-                //Recupera los parámetros de conexión del archivo 
-                //jdbc.properties
-                ResourceBundle rb = ResourceBundle.getBundle("jdbc");
+           
+                ResourceBundle rb = ResourceBundle.getBundle("JDBC.jdbc");
                 String driver = rb.getString("driver");
                 String url = rb.getString("url");
                 String pwd = rb.getString("pwd");
@@ -41,8 +40,7 @@ private static Connection con = null;
     }
     
     static class MiShDwnHook extends Thread{
-        //Justo antes de finaliza el programa la JVM invocará
-        //este método donde podemos cerra la conexión
+    
         @Override
         public void run(){
             try{

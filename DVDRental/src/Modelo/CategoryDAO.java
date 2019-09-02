@@ -9,6 +9,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import Servicios.Fachada;
 import javax.swing.JOptionPane;
+import java.sql.Timestamp;
+
 /**
  *
  * @author crist
@@ -26,7 +28,7 @@ public class CategoryDAO {
             pstm = con.prepareStatement(sql);
             pstm.setInt(1, c.getCategoryid());
             pstm.setString(2, c.getName());
-            pstm.setString(3, c.getLasUpdate());
+            pstm.setTimestamp(3, c.getLasUpdate());
             rtdo = pstm.executeUpdate();  
         }
         catch(SQLException ex){
@@ -57,7 +59,8 @@ public class CategoryDAO {
                     +    "WHERE category_id=?";
             pstm = con.prepareStatement(sql);            
             pstm.setString(1, c.getName());
-            pstm.setString(2, c.getLasUpdate());
+            pstm.setTimestamp(2, c.getLasUpdate());
+            pstm.setInt(3,c.getCategoryid());
             rtdo = pstm.executeUpdate();  
         }
         catch(SQLException ex){
@@ -131,7 +134,7 @@ public class CategoryDAO {
                 category = new Category();
                 category.setCategoryid(rs.getInt("category_id"));
                category.setName(rs.getString("name"));
-                category.setLasUpdate(rs.getString("lat_update"));
+                category.setLasUpdate(rs.getTimestamp("last_update"));
                 listado.add(category);
             }
         }

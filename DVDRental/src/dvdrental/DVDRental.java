@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package dvdrental;
-
+import Vista.InterfazPrincipal;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 
@@ -19,7 +19,8 @@ public class DVDRental {
      */
     public static void main(String[] args) {
         // TODO code application logic here 
- 
+         InterfazPrincipal ip =new InterfazPrincipal();
+        ip.setVisible(true);
     }
     
 }

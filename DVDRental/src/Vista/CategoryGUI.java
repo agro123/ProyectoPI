@@ -7,11 +7,12 @@ package Vista;
 import Modelo.Category;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.util.Calendar;
 import Controlador.ControladorCategory;
+import java.sql.Timestamp;
+import java.util.Date;
 /**
  *
  * @author crist
@@ -67,21 +68,20 @@ private void limpiarListadoTabla(){
         btnModificar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
+        jTextField1.setEnabled(false);
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtListado = new javax.swing.JTable();
         jTextField2 = new javax.swing.JTextField();
+        jTextField2.setEnabled(false);
         jLabel4 = new javax.swing.JLabel();
         btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Controles");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(350, 30, 67, 17);
 
         btnNuevo.setText("Nuevo");
         btnNuevo.setActionCommand("b");
@@ -90,17 +90,14 @@ private void limpiarListadoTabla(){
                 btnNuevoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnNuevo);
-        btnNuevo.setBounds(350, 70, 160, 23);
 
         btnRegistrar.setText("Registrar");
+        btnRegistrar.setEnabled(false);
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegistrar);
-        btnRegistrar.setBounds(350, 100, 160, 23);
 
         btnBorrar.setText("Borrar");
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
@@ -108,8 +105,6 @@ private void limpiarListadoTabla(){
                 btnBorrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBorrar);
-        btnBorrar.setBounds(350, 130, 160, 23);
 
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -117,38 +112,34 @@ private void limpiarListadoTabla(){
                 btnModificarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnModificar);
-        btnModificar.setBounds(350, 160, 160, 23);
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.setEnabled(false);
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCancelar);
-        btnCancelar.setBounds(350, 190, 160, 23);
 
         jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField1FocusGained(evt);
             }
         });
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(110, 80, 181, 20);
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Category ID");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 80, 75, 17);
 
         jLabel3.setBackground(new java.awt.Color(255, 0, 204));
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Categorias");
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(20, 40, 110, 17);
 
         jtListado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -174,7 +165,7 @@ private void limpiarListadoTabla(){
                 {null, null, null}
             },
             new String [] {
-                "Idioma_Id", "Idioma", "Last_Update"
+                "Categoria ID", "Categoria", "Last_Update"
             }
         ));
         jtListado.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -184,22 +175,15 @@ private void limpiarListadoTabla(){
         });
         jScrollPane1.setViewportView(jtListado);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(10, 270, 500, 190);
-
         jTextField2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField2FocusGained(evt);
             }
         });
-        getContentPane().add(jTextField2);
-        jTextField2.setBounds(110, 130, 181, 20);
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Categoria");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(20, 130, 58, 17);
 
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -207,8 +191,82 @@ private void limpiarListadoTabla(){
                 btnVolverActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVolver);
-        btnVolver.setBounds(350, 220, 160, 23);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(220, 220, 220)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel1)
+                        .addGap(15, 15, 15)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
+                        .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(350, 350, 350)
+                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel4)
+                        .addGap(32, 32, 32)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
+                        .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(350, 350, 350)
+                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(350, 350, 350)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(440, 440, 440)
+                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel3))
+                    .addComponent(jLabel2))
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnNuevo)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addComponent(btnRegistrar)
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBorrar))
+                .addGap(7, 7, 7)
+                .addComponent(btnModificar)
+                .addGap(7, 7, 7)
+                .addComponent(btnCancelar)
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(btnVolver)
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -242,7 +300,9 @@ private void limpiarListadoTabla(){
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        // TODO add your handling code here:
+        InterfazPrincipal ip =new InterfazPrincipal();
+        setVisible(false);
+        ip.setVisible(true);
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
@@ -266,8 +326,8 @@ private void limpiarListadoTabla(){
                 category.setCategoryid(Integer.parseInt(jTextField1.getText()));
                 category.setName(jTextField2.getText());
                
-                String date="/"+Calendar.DATE+"/"+Calendar.MONTH+"/"+Calendar.YEAR+"/";
-                category.setLasUpdate(date);
+             Date date = new Date();
+             category.setLasUpdate(new Timestamp(date.getTime()));
                 
                 
                                 
@@ -391,9 +451,9 @@ private void limpiarListadoTabla(){
           
              category.setCategoryid(Integer.parseInt(jTextField1.getText()));
              category.setName(jTextField2.getText());  
-             String date="/"+Calendar.DATE+"/"+Calendar.MONTH+"/"+Calendar.YEAR+"/";
-             category.setLasUpdate(date);                                          
-            
+             Date date = new Date();
+             category.setLasUpdate(new Timestamp(date.getTime()));                                          
+           
                          
              if(ControladorCategory.modificarCategory(category) == 1){
                  JOptionPane.showMessageDialog(this,"Actualización exitosa");
@@ -425,6 +485,10 @@ private void limpiarListadoTabla(){
      
         }
     }//GEN-LAST:event_jtListadoMouseClicked
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
