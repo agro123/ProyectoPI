@@ -111,7 +111,7 @@ public class CityDAO {
         }
         return rtdo;
     }
-      public ArrayList<City> listadoCities(int city_id){      
+      public ArrayList<City> listadoCities(int country_id){      
         Connection con = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
@@ -119,16 +119,16 @@ public class CityDAO {
         try{
             con = Fachada.getConnection();
             String sql="";
-            if(city_id==0){
+            if(country_id==0){
                 sql = "SELECT * FROM city ORDER BY city_id";            
             }else{
-                sql = "SELECT * FROM city where city_id = ? "
+                sql = "SELECT * FROM city where country_id = ? "
                     + "ORDER BY city_id";      
             }                     
             pstm = con.prepareStatement(sql);
             
-            if(city_id != 0){
-                pstm.setInt(1, city_id);
+            if(country_id != 0){
+                pstm.setInt(1, country_id);
             }
             
             rs = pstm.executeQuery();

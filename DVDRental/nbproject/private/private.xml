@@ -3,14 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/crist/Documents/NetBeansProjects/Repositorio2.0/trunk/DVDRental/src/Modelo/AddresDAO.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/Repositorio2.0/trunk/DVDRental/src/Vista/InterfazPrincipal.java</file>
-            <file>file:/C:/Users/crist/Documents/NetBeansProjects/Repositorio2.0/trunk/DVDRental/src/Controlador/ControladorActor.java</file>
-            <file>file:/C:/Users/crist/Documents/NetBeansProjects/Repositorio2.0/trunk/DVDRental/src/dvdrental/DVDRental.java</file>
-            <file>file:/C:/Users/crist/Documents/NetBeansProjects/Repositorio2.0/trunk/DVDRental/src/Vista/ActorGUI.java</file>
-            <file>file:/C:/Users/crist/Documents/NetBeansProjects/Repositorio2.0/trunk/DVDRental/src/Modelo/Addres.java</file>
-            <file>file:/C:/Users/crist/Documents/NetBeansProjects/Repositorio2.0/trunk/DVDRental/src/Modelo/ActorDAO.java</file>
-            <file>file:/C:/Users/crist/Documents/NetBeansProjects/Repositorio2.0/trunk/DVDRental/src/Controlador/ControladorAddres.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/Repositorio2.0/trunk/DVDRental/src/Modelo/CountryDAO.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/Repositorio2.0/trunk/DVDRental/src/Vista/CityGUI.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/Repositorio2.0/trunk/DVDRental/src/Controlador/ControladorCountry.java</file>
+            <file>file:/C:/Users/crist/Documents/NetBeansProjects/Repositorio2.0/trunk/DVDRental/src/Modelo/CityDAO.java</file>
             <file>file:/C:/Users/crist/Documents/NetBeansProjects/Repositorio2.0/trunk/DVDRental/src/Vista/AddresGUI.java</file>
         </group>
     </open-files>

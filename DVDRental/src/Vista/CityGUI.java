@@ -7,6 +7,8 @@ package Vista;
 
 import Controlador.ControladorCity;
 import Modelo.City;
+import Modelo.Country;
+import Controlador.ControladorCountry;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,7 +26,8 @@ public class CityGUI extends javax.swing.JFrame {
      */
     public CityGUI() {
         initComponents();
-        cargarCity();
+        agregarPaisescbx();
+        cargarCity(obtenerid());
     }
 private void limpiarListadoTabla(){
         DefaultTableModel modelo;
@@ -33,13 +36,19 @@ private void limpiarListadoTabla(){
             modelo.removeRow(i);
         }
     }
+    public void agregarPaisescbx(){
+        ControladorCountry p= new ControladorCountry();
+        ArrayList<Country>paises;
+        paises= p.listadoCountry(0);
+    for(int i=0;i<paises.size();i++){
+         cbxpais.addItem(paises.get(i).getName()+" ID:"+paises.get(i).getCountryid());}
+    }
     
-    
-    public void cargarCity(){
+    public void cargarCity(int id){
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) jtListado.getModel();    
         ArrayList<City> listado = new ArrayList();
-        listado=ControladorCity.listadoCity(0);
+        listado=ControladorCity.listadoCity(id);
         limpiarListadoTabla();
         for(int i= 0; i < listado.size(); i++){
               modelo.addRow(new Object[]{
@@ -50,6 +59,15 @@ private void limpiarListadoTabla(){
               });
         }
     }
+    //retorna el id de un pais
+    public int obtenerid(){
+        int id,pos;
+         String cbx;
+        cbx=cbxpais.getSelectedItem().toString();
+        pos=cbx.lastIndexOf(":")+1; 
+        id= Integer.parseInt(cbx.substring(pos));
+        return id;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,6 +77,7 @@ private void limpiarListadoTabla(){
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtListado = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
@@ -75,9 +94,10 @@ private void limpiarListadoTabla(){
         btnModificar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField3.setEnabled(false);
         jLabel5 = new javax.swing.JLabel();
+        cbxpais = new javax.swing.JComboBox<>();
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -188,15 +208,16 @@ private void limpiarListadoTabla(){
             }
         });
 
-        jTextField3.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField3FocusGained(evt);
-            }
-        });
-
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Pais");
+
+        cbxpais.setModel(new javax.swing.DefaultComboBoxModel<>());
+        cbxpais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxpaisActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -213,19 +234,19 @@ private void limpiarListadoTabla(){
                         .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel5))
+                                        .addGap(36, 36, 36)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jTextField2)
+                                            .addComponent(cbxpais, 0, 198, Short.MAX_VALUE)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addComponent(jLabel1)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -259,25 +280,28 @@ private void limpiarListadoTabla(){
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnRegistrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                        .addComponent(btnBorrar)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnBorrar)
+                            .addComponent(jLabel4))
                         .addGap(9, 9, 9)
                         .addComponent(btnModificar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(cbxpais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel5)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -305,8 +329,8 @@ private void limpiarListadoTabla(){
                 jtListado.getSelectedRow(), 0).toString());
         jTextField2.setText(modelo.getValueAt(
             jtListado.getSelectedRow(), 1).toString());
-        jTextField3.setText(modelo.getValueAt(
-            jtListado.getSelectedRow(), 2).toString());
+       // jTextField3.setText(modelo.getValueAt(
+           // jtListado.getSelectedRow(), 2).toString());
 
     }
     }//GEN-LAST:event_jtListadoMouseClicked
@@ -328,13 +352,14 @@ private void limpiarListadoTabla(){
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         jTextField1.setText("");
         jTextField2.setText("");
-        jTextField3.setText("");
+       // jTextField3.setText("");
         
         if(btnNuevo.getText().equals("Nuevo")){
             btnRegistrar.setEnabled(true);
             jTextField1.setEnabled(true);
             jTextField2.setEnabled(true);
-            jTextField3.setEnabled(true);
+            cbxpais.setEnabled(false);
+           // jTextField3.setEnabled(true);
             btnRegistrar.setEnabled(true);
             btnBorrar.setEnabled(false);
             btnModificar.setEnabled(false);
@@ -346,7 +371,8 @@ private void limpiarListadoTabla(){
             btnRegistrar.setEnabled(false);
             jTextField1.setEnabled(false);
             jTextField2.setEnabled(false);
-            jTextField3.setEnabled(false);
+            cbxpais.setEnabled(true);
+           // jTextField3.setEnabled(false);
             btnNuevo.setText("Nuevo");
             btnModificar.setEnabled(true);
             btnBorrar.setEnabled(true);
@@ -364,7 +390,7 @@ private void limpiarListadoTabla(){
 
             }
             else{
-            if (jTextField3.getText().trim().equals("")){
+            if (cbxpais.getSelectedItem().toString().equals("")){
                 JOptionPane.showMessageDialog(this,"Agregue un pais a la ciudad");
 
             }
@@ -372,7 +398,7 @@ private void limpiarListadoTabla(){
                 City city = new City();
                 city.setCity_id(Integer.parseInt(jTextField1.getText()));
                 city.setCity(jTextField2.getText());
-                city.setCountry_id(Integer.parseInt(jTextField3.getText()));;
+                city.setCountry_id(Integer.parseInt(cbxpais.getSelectedItem().toString()));;
                 Date date = new Date();
                 city.setLast_update(new Timestamp(date.getTime()));
 
@@ -392,12 +418,12 @@ private void limpiarListadoTabla(){
                             "Confirmación",JOptionPane.ERROR_MESSAGE);
                     }
 
-                    cargarCity();
+                    cargarCity(obtenerid());
 
                     btnNuevo.setText("Nuevo");
                     jTextField1.setEnabled(false);
                     jTextField2.setEnabled(false);
-                    jTextField3.setEnabled(false);
+                    //jTextField3.setEnabled(false);
 
                     btnNuevo.setEnabled(true);
                     btnRegistrar.setEnabled(false);
@@ -438,7 +464,7 @@ private void limpiarListadoTabla(){
                         "Registro Borrado con éxtio",
                         "Confirmación de acción",
                         JOptionPane.INFORMATION_MESSAGE);
-                    cargarCity();
+                    cargarCity(obtenerid());
                 }
                 else{
                     JOptionPane.showMessageDialog(this,
@@ -462,7 +488,8 @@ private void limpiarListadoTabla(){
             } else{
 
                 jTextField2.setEnabled(true);
-                jTextField3.setEnabled(true);
+                
+               // jTextField3.setEnabled(true);
                 btnBorrar.setEnabled(false);
                 btnNuevo.setEnabled(false);
                 btnRegistrar.setEnabled(false);
@@ -473,7 +500,7 @@ private void limpiarListadoTabla(){
         } else {
 
             jTextField2.setEnabled(false);
-            jTextField3.setEnabled(false);
+            //jTextField3.setEnabled(false);
             btnBorrar.setEnabled(true);
             btnNuevo.setEnabled(true);
             btnRegistrar.setEnabled(false);
@@ -485,13 +512,13 @@ private void limpiarListadoTabla(){
 
             a.setCity_id(Integer.parseInt(jTextField1.getText()));
             a.setCity(jTextField2.getText());
-            a.setCountry_id(Integer.parseInt(jTextField3.getText()));
+            a.setCountry_id(obtenerid());
             Date date = new Date();
             a.setLast_update(new Timestamp(date.getTime()));
 
             if(ControladorCity.modificarCity(a) == 1){
                 JOptionPane.showMessageDialog(this,"Actualización exitosa");
-                this.cargarCity();
+                this.cargarCity(obtenerid());
             } else {
                 JOptionPane.showMessageDialog(this,"Actualización Fallida");
             }
@@ -502,7 +529,8 @@ private void limpiarListadoTabla(){
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         jTextField1.setEnabled(false);
         jTextField2.setEnabled(false);
-        jTextField3.setEnabled(false);
+        cbxpais.setEnabled(true);
+      //  jTextField3.setEnabled(false);
         btnBorrar.setEnabled(true);
         btnNuevo.setEnabled(true);
         btnRegistrar.setEnabled(false);
@@ -511,9 +539,10 @@ private void limpiarListadoTabla(){
         jtListado.setEnabled(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void jTextField3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField3FocusGained
-        jTextField3.selectAll();
-    }//GEN-LAST:event_jTextField3FocusGained
+    private void cbxpaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxpaisActionPerformed
+
+            cargarCity(obtenerid());
+    }//GEN-LAST:event_cbxpaisActionPerformed
 
     /**
      * @param args the command line arguments
@@ -560,6 +589,8 @@ private void limpiarListadoTabla(){
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JComboBox<String> cbxpais;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -568,7 +599,6 @@ private void limpiarListadoTabla(){
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTable jtListado;
     // End of variables declaration//GEN-END:variables
 }
