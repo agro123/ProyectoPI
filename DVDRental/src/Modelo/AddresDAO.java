@@ -129,7 +129,7 @@ public class AddresDAO {
             if(id==0){
                 sql = "SELECT * FROM address ORDER BY address_id";            
             }else{
-                sql = "SELECT * FROM address where address_id = ? "
+                sql = "SELECT * FROM address where city_id = ? "
                     + "ORDER BY address_id";      
             }                     
             pstm = con.prepareStatement(sql);

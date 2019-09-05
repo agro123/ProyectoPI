@@ -398,7 +398,7 @@ private void limpiarListadoTabla(){
                 City city = new City();
                 city.setCity_id(Integer.parseInt(jTextField1.getText()));
                 city.setCity(jTextField2.getText());
-                city.setCountry_id(Integer.parseInt(cbxpais.getSelectedItem().toString()));;
+                city.setCountry_id(obtenerid());
                 Date date = new Date();
                 city.setLast_update(new Timestamp(date.getTime()));
 

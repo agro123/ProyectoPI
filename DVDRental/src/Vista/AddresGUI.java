@@ -5,8 +5,12 @@
  */
 package Vista;
 import Controlador.ControladorAddres;
+import Controlador.ControladorCity;
+import Controlador.ControladorCountry;
 import Modelo.Addres;
 import Modelo.AddresDAO;
+import Modelo.City;
+import Modelo.Country;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,7 +28,11 @@ public class AddresGUI extends javax.swing.JFrame {
      */
     public AddresGUI() {
         initComponents();
-        cargarAddres();
+        agregarPaisescbx();
+        agregarCiudadescbx(obteneridPais());
+        cargarAddres(obteneridCity());
+        
+        
     }
     private void limpiarListadoTabla(){
         DefaultTableModel modelo;
@@ -33,13 +41,43 @@ public class AddresGUI extends javax.swing.JFrame {
             modelo.removeRow(i);
         }
     }
+        public void agregarPaisescbx(){
+        ControladorCountry p= new ControladorCountry();
+        ArrayList<Country>paises;
+        paises= p.listadoCountry(0);
+    for(int i=0;i<paises.size();i++){
+         cbxpais.addItem(paises.get(i).getName()+" ID:"+paises.get(i).getCountryid());}
+    }
+            public int obteneridPais(){
+        int id,pos;
+         String cbx;
+        cbx=cbxpais.getSelectedItem().toString();
+        pos=cbx.lastIndexOf(":")+1; 
+        id= Integer.parseInt(cbx.substring(pos));
+        return id;
+    }
+         public int obteneridCity(){
+        int id,pos;
+         String cbx;
+        cbx=cbxciudad.getSelectedItem().toString();
+        pos=cbx.lastIndexOf(":")+1; 
+        id= Integer.parseInt(cbx.substring(pos));
+        return id;
+    }
+       public void agregarCiudadescbx(int country_id){
+           cbxciudad.setModel(new javax.swing.DefaultComboBoxModel<>());
+           ControladorCity p= new ControladorCity();
+        ArrayList<City>ciudades;
+        ciudades= p.listadoCity(country_id);
+    for(int i=0;i<ciudades.size();i++){
+         cbxciudad.addItem(ciudades.get(i).getCity()+" ID:"+ciudades.get(i).getCity_id());}
+       }
     
-    
-    public void cargarAddres(){
+    public void cargarAddres(int city_id){
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) jtListado.getModel();    
         ArrayList<Addres> listado = new ArrayList();
-        listado=ControladorAddres.listadoAddres(0);
+        listado=ControladorAddres.listadoAddres(city_id);
         limpiarListadoTabla();
         for(int i= 0; i < listado.size(); i++){
               modelo.addRow(new Object[]{
@@ -85,8 +123,6 @@ public class AddresGUI extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jTextField4.setEnabled(false);
         jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField5.setEnabled(false);
         jLabel7 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         jTextField6.setEnabled(false);
@@ -94,6 +130,9 @@ public class AddresGUI extends javax.swing.JFrame {
         jTextField7 = new javax.swing.JTextField();
         jTextField7.setEnabled(false);
         jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        cbxpais = new javax.swing.JComboBox<>();
+        cbxciudad = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -224,15 +263,9 @@ public class AddresGUI extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("District");
 
-        jTextField5.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField5FocusGained(evt);
-            }
-        });
-
         jLabel7.setBackground(new java.awt.Color(0, 0, 0));
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("Ciudad id");
+        jLabel7.setText("Ciudad");
 
         jTextField6.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -254,6 +287,21 @@ public class AddresGUI extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Telefono");
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setText("Pais");
+
+        cbxpais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxpaisActionPerformed(evt);
+            }
+        });
+
+        cbxciudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxciudadActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -262,42 +310,50 @@ public class AddresGUI extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(515, 515, 515)
+                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel8)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel9)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel6)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel5)
-                                                .addGap(20, 20, 20)
-                                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel7)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel8)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel9)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel4)
-                                            .addGap(28, 28, 28)
-                                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(jLabel6)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel5)
+                                            .addGap(20, 20, 20)
+                                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addGap(26, 26, 26)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                                        .addComponent(jLabel4)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(jLabel1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGap(42, 42, 42)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                                        .addComponent(cbxpais, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cbxciudad, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -306,12 +362,12 @@ public class AddresGUI extends javax.swing.JFrame {
                                 .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel2))
-                        .addGap(44, 44, 44))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(24, 24, 24)))
+                .addContainerGap(15, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,7 +377,7 @@ public class AddresGUI extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
                 .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnNuevo)
                         .addGap(12, 12, 12)
@@ -333,6 +389,14 @@ public class AddresGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCancelar))
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(cbxpais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(cbxciudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -347,22 +411,18 @@ public class AddresGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnVolver)
                 .addContainerGap())
         );
@@ -381,7 +441,6 @@ public class AddresGUI extends javax.swing.JFrame {
         jTextField2.setText("");
         jTextField3.setText("");
         jTextField4.setText("");
-        jTextField5.setText("");
         jTextField6.setText("");
         jTextField7.setText("");
 
@@ -391,7 +450,9 @@ public class AddresGUI extends javax.swing.JFrame {
             jTextField2.setEnabled(true);
             jTextField3.setEnabled(true);
             jTextField4.setEnabled(true);
-            jTextField5.setEnabled(true);   
+            cbxpais.setEnabled(false);
+            cbxciudad.setEnabled(false);
+           // jTextField5.setEnabled(true);   
             jTextField6.setEnabled(true);
             jTextField7.setEnabled(true);
             
@@ -408,7 +469,9 @@ public class AddresGUI extends javax.swing.JFrame {
             jTextField2.setEnabled(false);
             jTextField3.setEnabled(false);
             jTextField4.setEnabled(false);
-            jTextField5.setEnabled(false);   
+                  cbxpais.setEnabled(true);
+            cbxciudad.setEnabled(true);
+           // jTextField5.setEnabled(false);   
             jTextField6.setEnabled(false);
             jTextField7.setEnabled(false);
             btnNuevo.setText("Nuevo");
@@ -438,7 +501,7 @@ public class AddresGUI extends javax.swing.JFrame {
 
                 } 
                 else{
-                if (jTextField5.getText().trim().equals("")){
+                if (cbxciudad.getSelectedItem().toString().equals("")){
                     JOptionPane.showMessageDialog(this,"Agregue El id de la ciudad");
 
                 }
@@ -458,7 +521,7 @@ public class AddresGUI extends javax.swing.JFrame {
                     a.setAddres(jTextField2.getText());
                     a.setAddres2(jTextField3.getText());
                     a.setDistrict(jTextField4.getText());
-                    a.setCityid(Integer.parseInt(jTextField5.getText()));
+                a.setCityid(obteneridCity());
                     a.setPostalcode(jTextField6.getText());
                     a.setPhone(jTextField7.getText());
                     Date date = new Date();
@@ -480,14 +543,14 @@ public class AddresGUI extends javax.swing.JFrame {
                                 "Confirmación",JOptionPane.ERROR_MESSAGE);
                         }
 
-                        cargarAddres();
+                        cargarAddres(obteneridCity());
 
                         btnNuevo.setText("Nuevo");
                         jTextField1.setEnabled(false);
                         jTextField2.setEnabled(false);
                         jTextField3.setEnabled(false);
                         jTextField4.setEnabled(false);
-                        jTextField5.setEnabled(false);
+                     //   jTextField5.setEnabled(false);
                         jTextField6.setEnabled(false);
                         jTextField7.setEnabled(false);
 
@@ -530,7 +593,7 @@ public class AddresGUI extends javax.swing.JFrame {
                         "Registro Borrado con éxtio",
                         "Confirmación de acción",
                         JOptionPane.INFORMATION_MESSAGE);
-                    cargarAddres();
+                    cargarAddres(obteneridCity());
                 }
                 else{
                     JOptionPane.showMessageDialog(this,
@@ -565,7 +628,7 @@ public class AddresGUI extends javax.swing.JFrame {
                jTextField3.setText("");
             }  
                jTextField4.setText(modelo.getValueAt(jtListado.getSelectedRow(), 3).toString());
-               jTextField5.setText(modelo.getValueAt(jtListado.getSelectedRow(), 4).toString());            
+           //    jTextField5.setText(modelo.getValueAt(jtListado.getSelectedRow(), 4).toString());            
                jTextField6.setText(modelo.getValueAt(jtListado.getSelectedRow(), 5).toString());
                jTextField7.setText(modelo.getValueAt(jtListado.getSelectedRow(), 6).toString());
          
@@ -588,7 +651,7 @@ public class AddresGUI extends javax.swing.JFrame {
                 jTextField2.setEnabled(true);
                 jTextField3.setEnabled(true);
                 jTextField4.setEnabled(true);
-                jTextField5.setEnabled(true);
+             //   jTextField5.setEnabled(true);
                 jTextField6.setEnabled(true);
                 jTextField7.setEnabled(true);
                 btnBorrar.setEnabled(false);
@@ -603,7 +666,7 @@ public class AddresGUI extends javax.swing.JFrame {
             jTextField2.setEnabled(false);
             jTextField3.setEnabled(false);
                    jTextField4.setEnabled(false);
-                jTextField5.setEnabled(false);
+             //   jTextField5.setEnabled(false);
                 jTextField6.setEnabled(false);
                 jTextField7.setEnabled(false);
             btnBorrar.setEnabled(true);
@@ -619,7 +682,7 @@ public class AddresGUI extends javax.swing.JFrame {
                     a.setAddres(jTextField2.getText());
                     a.setAddres2(jTextField3.getText());
                     a.setDistrict(jTextField4.getText());
-                    a.setCityid(Integer.parseInt(jTextField5.getText()));
+                    a.setCityid(obteneridCity());
                     a.setPostalcode(jTextField6.getText());
                     a.setPhone(jTextField7.getText());
             Date date = new Date();
@@ -627,7 +690,7 @@ public class AddresGUI extends javax.swing.JFrame {
 
             if(ControladorAddres.modificarAddres(a) == 1){
                 JOptionPane.showMessageDialog(this,"Actualización exitosa");
-                this.cargarAddres();
+                this.cargarAddres(obteneridCity());
             } else {
                 JOptionPane.showMessageDialog(this,"Actualización Fallida");
             }
@@ -644,7 +707,9 @@ public class AddresGUI extends javax.swing.JFrame {
         jTextField2.setEnabled(false);
         jTextField3.setEnabled(false);
         jTextField4.setEnabled(false);
-        jTextField5.setEnabled(false);
+        cbxpais.setEnabled(true);
+        cbxciudad.setEnabled(true);
+     //   jTextField5.setEnabled(false);
         jTextField6.setEnabled(false);
         jTextField7.setEnabled(false);
         btnBorrar.setEnabled(true);
@@ -668,11 +733,6 @@ public class AddresGUI extends javax.swing.JFrame {
         jTextField4.selectAll();
     }//GEN-LAST:event_jTextField4FocusGained
 
-    private void jTextField5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField5FocusGained
-        // TODO add your handling code here:
-        jTextField5.selectAll();
-    }//GEN-LAST:event_jTextField5FocusGained
-
     private void jTextField6FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField6FocusGained
         // TODO add your handling code here:
         jTextField6.selectAll();
@@ -682,6 +742,16 @@ public class AddresGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         jTextField7.selectAll();
     }//GEN-LAST:event_jTextField7FocusGained
+
+    private void cbxpaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxpaisActionPerformed
+        // TODO add your handling code here:
+        agregarCiudadescbx(obteneridPais());
+    }//GEN-LAST:event_cbxpaisActionPerformed
+
+    private void cbxciudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxciudadActionPerformed
+        // TODO add your handling code here:
+        cargarAddres(obteneridCity());
+    }//GEN-LAST:event_cbxciudadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -725,7 +795,10 @@ public class AddresGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JComboBox<String> cbxciudad;
+    private javax.swing.JComboBox<String> cbxpais;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -739,7 +812,6 @@ public class AddresGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTable jtListado;
