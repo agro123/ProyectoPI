@@ -7,10 +7,12 @@ package Vista;
 import Controlador.ControladorAddres;
 import Controlador.ControladorCity;
 import Controlador.ControladorCountry;
+import Controlador.ControladorStore;
 import Modelo.Addres;
 import Modelo.AddresDAO;
 import Modelo.City;
 import Modelo.Country;
+import Modelo.Store;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -92,6 +94,12 @@ public class AddresGUI extends javax.swing.JFrame {
               });
         }
     }
+     //Este metodo permite calcular la id para un registro
+ public int calcularId(){
+     ArrayList<Addres>all = new ArrayList();
+     ControladorAddres s = new ControladorAddres();
+     return s.listadoAddres(0).size()+3;
+ }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -437,7 +445,7 @@ public class AddresGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        jTextField1.setText("");
+        jTextField1.setText(calcularId()+"");
         jTextField2.setText("");
         jTextField3.setText("");
         jTextField4.setText("");
@@ -446,7 +454,7 @@ public class AddresGUI extends javax.swing.JFrame {
 
         if(btnNuevo.getText().equals("Nuevo")){
             btnRegistrar.setEnabled(true);
-            jTextField1.setEnabled(true);
+            jTextField1.setEnabled(false);
             jTextField2.setEnabled(true);
             jTextField3.setEnabled(true);
             jTextField4.setEnabled(true);
@@ -553,6 +561,8 @@ public class AddresGUI extends javax.swing.JFrame {
                      //   jTextField5.setEnabled(false);
                         jTextField6.setEnabled(false);
                         jTextField7.setEnabled(false);
+                        cbxpais.setEnabled(true);
+                       cbxciudad.setEnabled(true);
 
                         btnNuevo.setEnabled(true);
                         btnRegistrar.setEnabled(false);

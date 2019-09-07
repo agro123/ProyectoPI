@@ -51,6 +51,11 @@ private void limpiarListadoTabla(){
               });
         }
     }
+     public int calcularId(){
+     ArrayList<Country>all = new ArrayList();
+     ControladorCountry s = new ControladorCountry();
+     return s.listadoCountry(0).size()+1;
+ }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -298,12 +303,12 @@ private void limpiarListadoTabla(){
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        jTextField1.setText("");
+        jTextField1.setText(calcularId()+"");
         jTextField2.setText("");
 
         if(btnNuevo.getText().equals("Nuevo")){
             btnRegistrar.setEnabled(true);
-            jTextField1.setEnabled(true);
+            jTextField1.setEnabled(false);
             jTextField2.setEnabled(true);
             btnRegistrar.setEnabled(true);
             btnBorrar.setEnabled(false);

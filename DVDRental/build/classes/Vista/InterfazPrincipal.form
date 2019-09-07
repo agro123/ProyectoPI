@@ -35,15 +35,15 @@
                               <Component id="btnActores" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
                           </Group>
                           <Component id="btnIdiomas" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
-                          <Component id="jButton8" alignment="1" min="-2" pref="109" max="-2" attributes="0"/>
-                          <Component id="jButton7" alignment="1" min="-2" pref="109" max="-2" attributes="0"/>
+                          <Component id="jButton9" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
+                          <Component id="jButton7" min="-2" pref="109" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButton9" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
                           <Component id="jButton10" min="-2" pref="109" max="-2" attributes="0"/>
                           <Component id="btnCity" min="-2" pref="109" max="-2" attributes="0"/>
-                          <Component id="btnDireccion" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnDireccion" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnStore" min="-2" pref="109" max="-2" attributes="0"/>
                           <Component id="btnCountry" min="-2" pref="109" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -84,15 +84,15 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton9" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                  <Component id="jButton8" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="btnStore" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="jButton7" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButton10" min="-2" pref="36" max="-2" attributes="0"/>
-                  <Component id="jButton7" min="-2" pref="35" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButton10" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                  <Component id="jButton9" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="59" max="32767" attributes="0"/>
+              <EmptySpace pref="60" max="32767" attributes="0"/>
               <Component id="btnSalir" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -228,10 +228,10 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton7ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton8">
+    <Component class="javax.swing.JButton" name="btnStore">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="33" red="33" type="rgb"/>
+          <Color blue="ff" green="99" red="33" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="12" style="1"/>
@@ -239,8 +239,11 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jButton8"/>
+        <Property name="text" type="java.lang.String" value="Tiendas"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnStoreActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton9">
       <Properties>

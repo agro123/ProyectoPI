@@ -68,6 +68,12 @@ private void limpiarListadoTabla(){
         id= Integer.parseInt(cbx.substring(pos));
         return id;
     }
+     //Este metodo permite calcular la id para un registro
+ public int calcularId(){
+     ArrayList<City>all = new ArrayList();
+     ControladorCity s = new ControladorCity();
+     return s.listadoCity(0).size()+1;
+ }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -350,13 +356,13 @@ private void limpiarListadoTabla(){
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        jTextField1.setText("");
+        jTextField1.setText(calcularId()+"");
         jTextField2.setText("");
        // jTextField3.setText("");
         
         if(btnNuevo.getText().equals("Nuevo")){
             btnRegistrar.setEnabled(true);
-            jTextField1.setEnabled(true);
+            jTextField1.setEnabled(false);
             jTextField2.setEnabled(true);
             cbxpais.setEnabled(false);
            // jTextField3.setEnabled(true);
