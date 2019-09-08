@@ -30,6 +30,7 @@ public class StoreGUI2 extends javax.swing.JFrame {
      */
     public StoreGUI2() {
         initComponents();
+        setLocationRelativeTo(null);
         agregarPaisescbx();
         agregarCiudadescbx(obteneridPais());
         agregarDireccionescbx(obteneridCity());

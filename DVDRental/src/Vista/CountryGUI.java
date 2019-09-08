@@ -26,6 +26,7 @@ public class CountryGUI extends javax.swing.JFrame {
      */
     public CountryGUI() {
         initComponents();
+        setLocationRelativeTo(null);
         cargarCountry();
     }
 private void limpiarListadoTabla(){

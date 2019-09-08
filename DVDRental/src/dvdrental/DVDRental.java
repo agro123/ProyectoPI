@@ -5,6 +5,7 @@
  */
 package dvdrental;
 import Vista.InterfazPrincipal;
+import Vista.LoginGUI;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 
@@ -18,9 +19,14 @@ public class DVDRental {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here 
+       /*
          InterfazPrincipal ip =new InterfazPrincipal();
-        ip.setVisible(true);
+        ip.setVisible(true);*/
+       
+       LoginGUI inicio = new LoginGUI();
+       inicio.setVisible(true);
+       
+       
     }
     
 }

@@ -26,6 +26,7 @@ public class CityGUI extends javax.swing.JFrame {
      */
     public CityGUI() {
         initComponents();
+        setLocationRelativeTo(null);
         agregarPaisescbx();
         cargarCity(obtenerid());
     }

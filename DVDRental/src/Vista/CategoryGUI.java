@@ -24,6 +24,7 @@ public class CategoryGUI extends javax.swing.JFrame {
      */
     public CategoryGUI() {
         initComponents();
+        setLocationRelativeTo(null);
         cargarCategorias();
     }
 private void limpiarListadoTabla(){

@@ -25,6 +25,7 @@ public class LenguajeGUI extends javax.swing.JFrame {
      */
     public LenguajeGUI() {
         initComponents();
+        setLocationRelativeTo(null);
         cargarLenguaje();
     }
 private void limpiarListadoTabla(){

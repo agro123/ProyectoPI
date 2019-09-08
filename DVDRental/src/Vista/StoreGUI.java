@@ -33,6 +33,7 @@ public class StoreGUI extends javax.swing.JFrame {
      */
     public StoreGUI() {
         initComponents();
+        setLocationRelativeTo(null);
         agregarPaisescbx();
         agregarCiudadescbx(obteneridPais());
         agregarDireccionescbx(obteneridCity());

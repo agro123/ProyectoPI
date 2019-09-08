@@ -24,6 +24,7 @@ public class ActorGUI extends javax.swing.JFrame {
      */
     public ActorGUI() {
         initComponents();
+        setLocationRelativeTo(null);
         cargarActor();
     }
 private void limpiarListadoTabla(){

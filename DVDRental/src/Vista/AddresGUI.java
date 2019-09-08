@@ -30,6 +30,7 @@ public class AddresGUI extends javax.swing.JFrame {
      */
     public AddresGUI() {
         initComponents();
+        setLocationRelativeTo(null);
         agregarPaisescbx();
         agregarCiudadescbx(obteneridPais());
         cargarAddres(obteneridCity());
