@@ -44,17 +44,9 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Munú Staff", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 3, 14), new java.awt.Color(51, 51, 51))); // NOI18N
 
-<<<<<<< .mine
-        jButton1.setBackground(new java.awt.Color(255, 63, 27));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-||||||| .r32
-        jButton1.setBackground(new java.awt.Color(51, 51, 255));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-=======
         jButton1.setBackground(new java.awt.Color(0, 255, 204));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
->>>>>>> .r34
-        jButton1.setForeground(new java.awt.Color(240, 240, 240));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Categorias");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,165 +54,61 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             }
         });
 
-<<<<<<< .mine
-        jButton2.setBackground(new java.awt.Color(255, 63, 27));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(240, 240, 240));
-        jButton2.setText("Actores");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-||||||| .r32
-        btnIdiomas.setBackground(new java.awt.Color(51, 51, 255));
-        btnIdiomas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnIdiomas.setForeground(new java.awt.Color(255, 255, 255));
-        btnIdiomas.setText("Idiomas");
-        btnIdiomas.addActionListener(new java.awt.event.ActionListener() {
-=======
         jButton2.setBackground(new java.awt.Color(0, 255, 204));
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Actores");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
->>>>>>> .r34
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-<<<<<<< .mine
-        jButton3.setBackground(new java.awt.Color(255, 63, 27));
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(240, 240, 240));
-        jButton3.setText("Idiomas");
-||||||| .r32
-        btnActores.setBackground(new java.awt.Color(51, 51, 255));
-        btnActores.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnActores.setForeground(new java.awt.Color(255, 255, 255));
-        btnActores.setText("Actores");
-        btnActores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActoresActionPerformed(evt);
-            }
-        });
-=======
         jButton3.setBackground(new java.awt.Color(0, 255, 204));
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Idiomas");
->>>>>>> .r34
 
-<<<<<<< .mine
-        jButton4.setBackground(new java.awt.Color(255, 63, 27));
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(240, 240, 240));
-        jButton4.setText("Direcciones");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-||||||| .r32
-        btnDireccion.setBackground(new java.awt.Color(51, 153, 255));
-        btnDireccion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnDireccion.setForeground(new java.awt.Color(255, 255, 255));
-        btnDireccion.setText("Direcciones");
-        btnDireccion.addActionListener(new java.awt.event.ActionListener() {
-=======
         jButton4.setBackground(new java.awt.Color(0, 255, 204));
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Direcciones");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
->>>>>>> .r34
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
 
-<<<<<<< .mine
-        jButton5.setBackground(new java.awt.Color(255, 63, 27));
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(240, 240, 240));
-        jButton5.setText("Ciudades");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-||||||| .r32
-        btnCountry.setBackground(new java.awt.Color(51, 153, 255));
-        btnCountry.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnCountry.setForeground(new java.awt.Color(255, 255, 255));
-        btnCountry.setText("Países");
-        btnCountry.addActionListener(new java.awt.event.ActionListener() {
-=======
         jButton5.setBackground(new java.awt.Color(0, 255, 204));
         jButton5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Ciudades");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
->>>>>>> .r34
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
 
-<<<<<<< .mine
-        jButton6.setBackground(new java.awt.Color(255, 63, 27));
-        jButton6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(240, 240, 240));
-        jButton6.setText("N/A");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-||||||| .r32
-        btnCity.setBackground(new java.awt.Color(51, 153, 255));
-        btnCity.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnCity.setForeground(new java.awt.Color(255, 255, 255));
-        btnCity.setText("Ciudades");
-        btnCity.addActionListener(new java.awt.event.ActionListener() {
-=======
         jButton6.setBackground(new java.awt.Color(0, 255, 204));
         jButton6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Tienda");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
->>>>>>> .r34
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
 
-<<<<<<< .mine
-        jButton7.setBackground(new java.awt.Color(255, 63, 27));
-        jButton7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(240, 240, 240));
-        jButton7.setText("Inventario");
-||||||| .r32
-        jButton7.setBackground(new java.awt.Color(51, 51, 255));
-        jButton7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("jButton7");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-=======
         jButton7.setBackground(new java.awt.Color(0, 255, 204));
         jButton7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Inventario");
->>>>>>> .r34
 
-<<<<<<< .mine
-        jButton8.setBackground(new java.awt.Color(255, 63, 27));
-        jButton8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(240, 240, 240));
-        jButton8.setText("Países");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-||||||| .r32
-        btnStore.setBackground(new java.awt.Color(51, 153, 255));
-        btnStore.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnStore.setForeground(new java.awt.Color(255, 255, 255));
-        btnStore.setText("Tiendas");
-        btnStore.addActionListener(new java.awt.event.ActionListener() {
-=======
         jButton8.setBackground(new java.awt.Color(0, 255, 204));
         jButton8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton8.setForeground(new java.awt.Color(255, 255, 255));
         jButton8.setText("Países");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
->>>>>>> .r34
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
             }
@@ -239,35 +127,6 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< .mine
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(51, 51, 51)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))))
-                        .addGap(37, 37, 37)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 148, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton9)))
-                .addContainerGap())
-||||||| .r32
-            .addGap(0, 708, Short.MAX_VALUE)
-=======
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -293,7 +152,6 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton9)))
                 .addContainerGap())
->>>>>>> .r34
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,23 +210,9 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         ciudades.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-       //LO QUE IBA ACÁ ERA TIENDA Y SOLO PUEDE ACCEDER A ELLA EL MANAGER
-    }                                        
-
-    private void btnIdiomasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIdiomasActionPerformed
-                        LenguajeGUI lenguajeview = new LenguajeGUI();
-          setVisible(false);
-           lenguajeview.setVisible(true);
-    }//GEN-LAST:event_btnIdiomasActionPerformed
-=======
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        StoreGUI2 tiendas = new StoreGUI2();
-        dispose();
-        tiendas.setVisible(true);
+        // LA QUITÉ
     }//GEN-LAST:event_jButton6ActionPerformed
->>>>>>> .r34
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         CountryGUI paises = new CountryGUI();

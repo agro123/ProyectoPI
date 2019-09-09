@@ -5,8 +5,6 @@
  */
 package Vista;
 
-import static java.util.Arrays.equals;
-
 /**
  *
  * @author Leonardo
@@ -136,19 +134,22 @@ public class LoginGUI extends javax.swing.JFrame {
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
+        jTextField2.selectAll();
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
+        jTextField1.selectAll();
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
         if(jTextField1.getText().equalsIgnoreCase("admin") && jTextField2.getText().equalsIgnoreCase("admin"))
         {
-            Admin pantalla = new Admin();
+            Admin princ = new Admin();
+             princ.setVisible(true);
             dispose();
-            pantalla.setVisible(true);
+            
         } else {
         
         InterfazPrincipal principal = new InterfazPrincipal();
